@@ -2,6 +2,8 @@ const qwerty = document.getElementById('qwerty');
 const phrase = document.getElementById('phrase');
 const startButton = document.getElementById('startButton');
 let missed = 0;
+const show = document.getElementsByClassName('show');
+const letter = document.getElementsByClassName('letter');
 
 // Array of phrases
 const phrases = ['cool beans', 'as if', 'groovy man', 'black cat', 'wishful thinking'];
@@ -51,15 +53,29 @@ const checkLetter = button => {
     return match;
 }
 
+
+// Checks if the game has been won or lost
+const checkWin = () => {
+    if (show.length === letter.length) {
+        console.log('You win!');
+    }
+}
+
+
 // Listens for events from keyboard
 qwerty.addEventListener('click', e => {
     if (e.target.tagName === 'BUTTON'){
         e.target.className = 'chosen';
         e.target.disabled = true;
-        const letterFound = checkLetter(e.target.innerHTML); 
+        const letterFound = checkLetter(e.target.innerHTML);
+        if (letterFound === null) {
+            missed += 1; 
+        }
     }
-    
+    checkWin();
 });
+
+
 
 
 
