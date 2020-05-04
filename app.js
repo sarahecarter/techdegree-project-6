@@ -21,10 +21,12 @@ const getRandomPhraseAsArray = arr => {
 
 // Takes the array of letters and adds it to the display
 const addPhraseToDisplay = arr => {
-    for (i = 0 ; i < arr.length ; i += 1) {
+    for (let i = 0 ; i < arr.length ; i += 1) {
         const li = document.createElement("LI");
         li.textContent = arr[i];
-        if (li.textContent !== ' ') {
+        if (li.textContent === ' ') {
+            li.className = 'space';
+        } else {
             li.className = 'letter';
         }
         phrase.appendChild(li);
@@ -34,6 +36,30 @@ const addPhraseToDisplay = arr => {
 const phraseArray = getRandomPhraseAsArray(phrases);
 addPhraseToDisplay(phraseArray);
 
+
+// Checks if a letter is in the display
+const checkLetter = button => {
+    const listItems = document.getElementsByClassName('letter');
+    let match = null;
+    for (let i = 0 ; i < listItems.length ; i += 1) {
+        if (listItems[i].textContent === button) {
+            listItems[i].classList.add('show');
+            match = listItems[i].textContent;
+        } 
+        
+    } 
+    return match;
+}
+
+// Listens for events from keyboard
+qwerty.addEventListener('click', e => {
+    if (e.target.tagName === 'BUTTON'){
+        e.target.className = 'chosen';
+        e.target.disabled = true;
+        const letterFound = checkLetter(e.target.innerHTML); 
+    }
+    
+});
 
 
 
