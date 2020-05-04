@@ -15,8 +15,8 @@ startButton.addEventListener('click', () => {
 // Randomly chooses and returns a phrase from an array
 const getRandomPhraseAsArray = arr => {
     const getNumber = Math.floor((Math.random() * 5));
-    const arrayIndex = [arr[getNumber]];
-    return arrayIndex;
+    const arrayIndex = arr[getNumber];
+    return arrayIndex.split("");
 }
 
 // Takes the array of letters and adds it to the display
@@ -24,9 +24,8 @@ const addPhraseToDisplay = arr => {
     for (i = 0 ; i < arr.length ; i += 1) {
         const li = document.createElement("LI");
         li.textContent = arr[i];
-        const letters = /^[A-Za-z]+$/;
-        if (i === letters) {
-            li.className = "letter";
+        if (li.textContent !== ' ') {
+            li.className = 'letter';
         }
         phrase.appendChild(li);
     }
