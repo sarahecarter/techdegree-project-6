@@ -95,6 +95,7 @@ button {
 .show {
   color: #000;
   background-color: #76CE82;
+  transition-duration: 0.5s;
 }
 
 /* Keyboard */
@@ -148,6 +149,8 @@ button {
 
 .win {
   background-color: var(--color-win);
+  font-size: var(--font-size-large);
+  font-family: 'Open Sans', sans-serif;
 }
 
 .win a {
@@ -156,6 +159,8 @@ button {
 
 .lose {
   background-color: var(--color-lose);
+  font-size: var(--font-size-large);
+  font-family: 'Open Sans', sans-serif;
 }
 
 .lose a {

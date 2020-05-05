@@ -57,7 +57,14 @@ const checkLetter = button => {
 // Checks if the game has been won or lost
 const checkWin = () => {
     if (show.length === letter.length) {
-        console.log('You win!');
+        let overlay = document.getElementById('overlay');
+        overlay.classList.add('win');
+        overlay.innerHTML = "You've won!";
+        overlay.style.display = 'flex';
+    } else if (missed === 5) {
+        overlay.classList.add('lose');
+        overlay.innerHTML = "Sorry, you lost!";
+        overlay.style.display = 'flex';
     }
 }
 
@@ -70,6 +77,8 @@ qwerty.addEventListener('click', e => {
         const letterFound = checkLetter(e.target.innerHTML);
         if (letterFound === null) {
             missed += 1; 
+            let tries = document.getElementsByTagName('IMG')[missed - 1];
+            tries.src = 'images/lostHeart.png';
         }
     }
     checkWin();
