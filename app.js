@@ -54,17 +54,27 @@ const checkLetter = button => {
 }
 
 
-// Checks if the game has been won or lost
+// Checks if the game has been won or lost and shows corresponding overlay screen
 const checkWin = () => {
     if (show.length === letter.length) {
         let overlay = document.getElementById('overlay');
         overlay.classList.add('win');
         overlay.innerHTML = "You've won!";
         overlay.style.display = 'flex';
+        overlay.appendChild(startButton);
+        startButton.textContent = 'Play Again?';
+        startButton.addEventListener('click', e => {
+            window.location.reload();
+        })
     } else if (missed === 5) {
         overlay.classList.add('lose');
         overlay.innerHTML = "Sorry, you lost!";
         overlay.style.display = 'flex';
+        overlay.appendChild(startButton);
+        startButton.textContent = 'Play Again?';
+        startButton.addEventListener('click', e => {
+            window.location.reload();
+        })
     }
 }
 
